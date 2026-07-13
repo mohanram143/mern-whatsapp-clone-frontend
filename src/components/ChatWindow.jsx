@@ -583,7 +583,7 @@ export default function ChatWindow({ selectedUser, onMessage, onClearChat, onBac
                     )}
 
                     {!isDeleted && (
-                      <span className="text-[10px] float-right -mt-3.5 ml-2 flex items-center gap-1 dark:text-gray-400 text-gray-500">
+                      <span className="text-[10px] float-left.5 ml-4 flex items-center gap-1 dark:text-gray-400 text-gray-500">
                         {item.edited && <span className="italic">edited</span>}
                         {formatMsgTime(item.createdAt)}
                         {isMine && (

@@ -4,6 +4,11 @@ import { useSocket } from "../context/SocketContext";
 import { useTheme } from "../context/ThemeContext";
 import authService from "../api/authService";
 import UserAvatar from "./UserAvatar";
+import { BsFillChatSquareTextFill } from "react-icons/bs";
+import { RiChat3Fill } from "react-icons/ri";
+import { IoMdCall } from "react-icons/io";
+import { RiContactsFill } from "react-icons/ri";
+import { RiLogoutBoxLine } from "react-icons/ri";
 
 function timeAgo(dateStr) {
   if (!dateStr) return "";
@@ -164,15 +169,30 @@ export default function Sidebar({
                     setMenuOpen(false);
                     setActiveTab("profile");
                   }}
-                  className="w-full text-left px-4 py-2.5 text-sm dark:text-gray-200 text-gray-700 dark:hover:bg-gray-700 hover:bg-gray-50"
+                  className="w-full text-left px-6 py-2.5 text-sm dark:text-gray-200 text-gray-700 dark:hover:bg-gray-700 hover:bg-gray-50"
                 >
-                  👤 Profile
+                  <div className="flex items-center gap-2">
+                        <div>
+                            <RiContactsFill />
+                          </div>           
+                          <div>
+                            Profile
+                            </div>                  
+                    </div> 
                 </button>
                 <button
                   onClick={logout}
                   className="w-full text-left px-4 py-2.5 text-sm text-red-500 dark:hover:bg-gray-700 hover:bg-gray-50"
                 >
-                  🚪 Logout
+                  <div className="flex items-center gap-2 pl-1">
+                    <div>
+                        <RiLogoutBoxLine />
+                    </div>
+                    <div>
+                        Logout
+                    </div>
+                  </div>
+                  
                 </button>
               </div>
             )}
@@ -306,27 +326,42 @@ export default function Sidebar({
         )}
       </div>
 
-      {/* Bottom nav: Chats / Status / Calls */}
-      <div className="flex items-center justify-around border-t dark:border-gray-800 border-gray-200 dark:bg-wa-panelDark bg-white py-1.5">
-        {[
-          { key: "chats", label: "Chats", icon: "💬" },
-          { key: "status", label: "Status", icon: "⭘" },
-          { key: "calls", label: "Calls", icon: "📞" },
-        ].map((tab) => (
-          <button
-            key={tab.key}
-            onClick={() => setActiveTab(tab.key)}
-            className={`flex flex-col items-center gap-0.5 px-4 py-1.5 rounded-lg text-xs transition-colors ${
-              activeTab === tab.key
-                ? "text-wa-teal"
-                : "dark:text-gray-500 text-gray-400 dark:hover:text-gray-300 hover:text-gray-600"
-            }`}
-          >
-            <span className="text-lg leading-none">{tab.icon}</span>
-            {tab.label}
-          </button>
-        ))}
-      </div>
+{/* Bottom Navigation */}
+{/* Bottom Navigation */}
+<div className="fixed bottom-0 left-0 right-0 z-50 w-full border-t border-gray-200 dark:border-gray-800 bg-white dark:bg-wa-panelDark">
+  <div className="flex items-center justify-around h-16">
+    {[
+      {
+        key: "chats",
+        label: "Chats",
+        icon: <BsFillChatSquareTextFill />,
+      },
+      {
+        key: "status",
+        label: "Updates",
+        icon: <RiChat3Fill />,
+      },
+      {
+        key: "calls",
+        label: "Calls",
+        icon: <IoMdCall />,
+      },
+    ].map((tab) => (
+      <button
+        key={tab.key}
+        onClick={() => setActiveTab(tab.key)}
+        className={`flex flex-1 flex-col items-center justify-center ${
+          activeTab === tab.key
+            ? "text-wa-teal"
+            : "text-gray-500 dark:text-gray-400"
+        }`}
+      >
+        <span className="text-xl">{tab.icon}</span>
+        <span className="text-xs mt-1">{tab.label}</span>
+      </button>
+    ))}
+  </div>
+</div>
     </div>
   );
 }

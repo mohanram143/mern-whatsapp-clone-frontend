@@ -232,6 +232,31 @@ export default function Sidebar({
           )}
         </div>
       </div>
+{/*     
+      // Bottom Navigation
+
+      Bottom nav: Chats / Status / Calls */}
+      <div className="flex items-center justify-around border-t dark:border-gray-800 border-gray-200 dark:bg-wa-panelDark bg-white py-1.5">
+        {[
+          { key: "chats", label: "Chats", icon: <BsFillChatSquareTextFill /> },
+          { key: "status", label: "Updates", icon: <RiChat3Fill />
+ },
+          { key: "calls", label: "Calls", icon: <IoMdCall /> },
+        ].map((tab) => (
+          <button
+            key={tab.key}
+            onClick={() => setActiveTab(tab.key)}
+            className={`flex flex-col items-center gap-0.5 px-4 py-1.5 rounded-lg text-xs transition-colors ${
+              activeTab === tab.key
+                ? "text-wa-teal"
+                : "dark:text-gray-500 text-gray-400 dark:hover:text-gray-300 hover:text-gray-600"
+            }`}
+          >
+            <span className="text-lg leading-none">{tab.icon}</span>
+            {tab.label}
+          </button>
+        ))}
+      </div> 
 
       {/* List area */}
       <div className="flex-1 overflow-y-auto">
@@ -327,41 +352,31 @@ export default function Sidebar({
       </div>
 
 {/* Bottom Navigation */}
-{/* Bottom Navigation */}
-<div className="fixed bottom-0 left-0 right-0 z-50 w-full border-t border-gray-200 dark:border-gray-800 bg-white dark:bg-wa-panelDark">
-  <div className="flex items-center justify-around h-16">
-    {[
-      {
-        key: "chats",
-        label: "Chats",
-        icon: <BsFillChatSquareTextFill />,
-      },
-      {
-        key: "status",
-        label: "Updates",
-        icon: <RiChat3Fill />,
-      },
-      {
-        key: "calls",
-        label: "Calls",
-        icon: <IoMdCall />,
-      },
-    ].map((tab) => (
-      <button
-        key={tab.key}
-        onClick={() => setActiveTab(tab.key)}
-        className={`flex flex-1 flex-col items-center justify-center ${
-          activeTab === tab.key
-            ? "text-wa-teal"
-            : "text-gray-500 dark:text-gray-400"
-        }`}
-      >
-        <span className="text-xl">{tab.icon}</span>
-        <span className="text-xs mt-1">{tab.label}</span>
-      </button>
-    ))}
-  </div>
+{/* Bottom Navigation
+
+      Bottom nav: Chats / Status / Calls
+      <div className="flex items-center justify-around border-t dark:border-gray-800 border-gray-200 dark:bg-wa-panelDark bg-white py-1.5">
+        {[
+          { key: "chats", label: "Chats", icon: <BsFillChatSquareTextFill /> },
+          { key: "status", label: "Updates", icon: <RiChat3Fill />
+ },
+          { key: "calls", label: "Calls", icon: <IoMdCall /> },
+        ].map((tab) => (
+          <button
+            key={tab.key}
+            onClick={() => setActiveTab(tab.key)}
+            className={`flex flex-col items-center gap-0.5 px-4 py-1.5 rounded-lg text-xs transition-colors ${
+              activeTab === tab.key
+                ? "text-wa-teal"
+                : "dark:text-gray-500 text-gray-400 dark:hover:text-gray-300 hover:text-gray-600"
+            }`}
+          >
+            <span className="text-lg leading-none">{tab.icon}</span>
+            {tab.label}
+          </button>
+        ))}
+      </div> */}
 </div>
-    </div>
+    
   );
 }
